@@ -10,7 +10,7 @@ describe('Buscar Heroes', () => {
 
   it('should display Bombasto Details', () => {
     page.navigateTo();
-    page.enterNewHeroInInput('Bombasto');
+    page.searchHero('Bombasto');
     expect(element(by.tagName('h2')).getText()).toBe('Bombasto details!');    
   });
 

@@ -9,12 +9,11 @@ describe('Eliminar heroe', () => {
     page.navigateToHeroes();
   });
 
-  it('should delete a heore after clicking in a x', () => {
+  it('should delete a hero after clicking in a x', () => {
     const heroes = page.getAllHeroes();
     const heroesCount = heroes.count();
-    
-    heroes[0].findElement(by.tagName('button')).click();
-
+    let first = heroes.first();
+    first.all(by.tagName('button')).get(0).click();
     expect(page.getAllHeroes().count()).toBe(heroesCount.then(n => n - 1));
   });
 
