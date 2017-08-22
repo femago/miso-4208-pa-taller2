@@ -1,35 +1,35 @@
 import { TourOfHeroesPage } from './app.po';
+import {browser, by, element, ElementFinder} from 'protractor';
 
-describe('Tour of heroes Dashboard', () => {
+describe('Navegar a un heroe desde', () => {
   let page: TourOfHeroesPage;
 
   beforeEach(() => {
     page = new TourOfHeroesPage();
   });
 
-  it('should display top 4 heroes', () => {
+  it('el dashboard debe mostrar el detalle del heroe', () => {
     page.navigateTo();
-    expect(page.getTop4Heroes()).toEqual(['Mr. Nice', 'Narco', 'Bombasto', 'Celeritas']);
+    
   });
 
-  it('should navigate to heroes', () => {
+  it('la lista de heroes debe mostrar el detalle del heroe', () => {
     page.navigateToHeroes();
-    expect(page.getAllHeroes().count()).toBe(11);
+    let first = page.getAllHeroes().get(0);
+    first.click();
+    let name = first.all(by.tagName('span')).get(1).getText();
+    
+    page.viewHeroDetails();
+    
+    expect(element(by.tagName('h2')).getText()).toContain(name);
+
+  });
+  
+  it('la busqueda debe mostrar el detalle del heroe', () => {
+    page.navigateTo();
+    page.searchHero('Bombasto');
+    expect(element(by.tagName('h2')).getText()).toBe('Bombasto details!');   
   });
 });
 
-describe('Tour of heroes, heroes page', () => {
-  let page: TourOfHeroesPage;
 
-  beforeEach(() => {
-    page = new TourOfHeroesPage;
-    page.navigateToHeroes();
-  });
-
-  it('should add a new hero', () => {
-    const currentHeroes = page.getAllHeroes().count();
-    page.enterNewHeroInInput('My new Hero');
-    expect(page.getAllHeroes().count()).toBe(currentHeroes.then(n => n + 1));
-  });
-
-});

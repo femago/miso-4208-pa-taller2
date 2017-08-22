@@ -27,4 +27,7 @@ export class TourOfHeroesPage {
     element(by.className('search-result')).click();
   }
   
+  viewHeroDetails() {
+    element(by.buttonText('View Details')).click();
+  }
 }
