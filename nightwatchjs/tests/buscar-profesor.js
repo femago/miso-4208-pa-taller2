@@ -1,5 +1,5 @@
 module.exports = { // adapted from: https://git.io/vodU0
-  'Buscar Profesor': function (browser) {
+  '(2) Buscar Profesor': function (browser) {
     browser
       .url('https://losestudiantes.co/')
       .click('.botonCerrar')
