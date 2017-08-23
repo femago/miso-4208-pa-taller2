@@ -13,6 +13,11 @@ export class TourOfHeroesPage {
     element(by.linkText('Heroes')).click();
   }
 
+  navigateToDashboard() {
+    element(by.linkText('Dashboard')).click();
+  }
+
+
   getAllHeroes() {
     return element(by.tagName('my-heroes')).all(by.tagName('li'));
   }
@@ -29,5 +34,10 @@ export class TourOfHeroesPage {
   
   viewHeroDetails() {
     element(by.buttonText('View Details')).click();
+  }
+
+  editHero(newHeroName: string) {
+    element(by.tagName('input')).sendKeys(newHeroName);
+    element(by.buttonText('Save')).click();
   }
 }

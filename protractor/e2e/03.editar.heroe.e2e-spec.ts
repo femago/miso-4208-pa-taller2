@@ -1,35 +1,20 @@
 import { TourOfHeroesPage } from './app.po';
+import { browser, by, element, ElementFinder } from 'protractor';
 
-describe('Tour of heroes Dashboard', () => {
+describe('(3) Editar Heroe', () => {
   let page: TourOfHeroesPage;
 
   beforeEach(() => {
     page = new TourOfHeroesPage();
   });
 
-  it('should display top 4 heroes', () => {
+  it('should change the name', () => {
+    const newName = 'New Hero'
     page.navigateTo();
-    expect(page.getTop4Heroes()).toEqual(['Mr. Nice', 'Narco', 'Bombasto', 'Celeritas']);
+    page.searchHero('Narco');
+    page.editHero(newName);
+    page.navigateToDashboard();
+    page.searchHero(newName);
+    expect(element(by.tagName('h2')).getText()).toContain(newName);  
   });
-
-  it('should navigate to heroes', () => {
-    page.navigateToHeroes();
-    expect(page.getAllHeroes().count()).toBe(11);
-  });
-});
-
-describe('Tour of heroes, heroes page', () => {
-  let page: TourOfHeroesPage;
-
-  beforeEach(() => {
-    page = new TourOfHeroesPage;
-    page.navigateToHeroes();
-  });
-
-  it('should add a new hero', () => {
-    const currentHeroes = page.getAllHeroes().count();
-    page.enterNewHeroInInput('My new Hero');
-    expect(page.getAllHeroes().count()).toBe(currentHeroes.then(n => n + 1));
-  });
-
 });

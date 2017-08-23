@@ -1,15 +1,16 @@
 import { TourOfHeroesPage } from './app.po';
 import {browser, by, element, ElementFinder} from 'protractor';
 
-describe('Eliminar heroe', () => {
+describe('(2) Eliminar heroe', () => {
   let page: TourOfHeroesPage;
 
   beforeEach(() => {
     page = new TourOfHeroesPage;
-    page.navigateToHeroes();
+    page.navigateTo();
   });
-
+  
   it('should delete a hero after clicking in a x', () => {
+    page.navigateToHeroes();
     const heroes = page.getAllHeroes();
     const heroesCount = heroes.count();
     let first = heroes.first();
